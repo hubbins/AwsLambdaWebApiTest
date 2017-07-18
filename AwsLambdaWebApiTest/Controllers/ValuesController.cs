@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Amazon.Lambda.Core;
+using Amazon.Lambda.AspNetCoreServer;
 
 namespace AwsLambdaWebApiTest.Controllers
 {
@@ -13,7 +15,9 @@ namespace AwsLambdaWebApiTest.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            ILambdaContext context = (ILambdaContext)this.HttpContext.Items[APIGatewayProxyFunction.LAMBDA_CONTEXT];
+            return new string[] { $"Request id: {context.AwsRequestId}", $"Function name: {context.FunctionName}",
+                $"Identity: {context.Identity}", $"Context: {context.ClientContext}" };
         }
 
         // GET api/values/5
