@@ -1,5 +1,7 @@
 Deploy a .NET Core 1.0 WebAPI service on AWS Lambda using VS2017.
 
+[Uses the AWS Toolkit for VS2017.](https://aws.amazon.com/visualstudio/)
+
 Create a default .NET Core 1.0 (not 1.1) WebApi project.  1.1 is not supported on Lambda.
 
 Add the 4 lines to the project:
